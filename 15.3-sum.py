@@ -4,6 +4,7 @@
 # [15] 3Sum
 #
 
+
 # @lc code=start
 class Solution(object):
     def threeSum(self, nums):
@@ -17,22 +18,23 @@ class Solution(object):
         nums.sort()
 
         for i in range(length):
-            if nums[i] > 0 and nums[i] < nums[i-1]:
+            if nums[i] > 0 and nums[i] < nums[i - 1]:
                 continue
-            m = i + 1
-            e = length - 1
-            while m < e:
-                s = nums[i]+nums[m]+nums[e]
-                if s < 0:
-                    m += 1
-                elif s > 0:
-                    e -= 1
+            left = i + 1
+            right = length - 1
+            while left < right:
+                curSum = nums[i] + nums[left] + nums[right]
+                if curSum < 0:
+                    left += 1
+                elif curSum > 0:
+                    right -= 1
                 else:
-                    temp = [nums[i], nums[m], nums[e]]
+                    temp = [nums[i], nums[left], nums[right]]
                     if temp not in r:
                         r.append(temp)
-                    m += 1
+                    left += 1
 
         return r
+
 
 # @lc code=end
