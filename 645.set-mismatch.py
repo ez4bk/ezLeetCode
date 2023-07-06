@@ -7,7 +7,7 @@
 
 # @lc code=start
 class Solution:
-    def findErrorNums(self, nums: List[int]) -> List[int]:
+    def findErrorNums(self, nums: list[int]) -> list[int]:
         dup = -1
         missing = 1
         for n in nums:
