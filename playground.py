@@ -1,51 +1,31 @@
-from graphviz import Digraph
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+def dijkstra(graph, startProduct):
+    n = len(graph)
+    minDistances = [float('inf')] * n
+    visited = [False] * n
+    
+    minDistances[startProduct] = 0
+    
+    for i in range(n):
+        minIndex = -1
+        for j in range(n):
+            if not visited[j] and (minIndex == -1 or minDistances[j] < minDistances[minIndex]):
+                minIndex = j
+        if minDistances[minIndex] == float('inf'):
+            break
+        visited[minIndex] = True
+        
+        for j in range(n):
+            if graph[minIndex][j] != 0:
+                potentialDist = minDistances[minIndex] + graph[minIndex][j]
+                if potentialDist < minDistances[j]:
+                    minDistances[j] = potentialDist
+    
+    return minDistances
 
-def build_balanced_binary_tree(ids):
-    if not ids:
-        return None
-
-    sorted_ids = sorted(ids, reverse=True)
-    return construct_tree(sorted_ids)
-
-def construct_tree(sorted_ids):
-    if not sorted_ids:
-        return None
-
-    mid = len(sorted_ids) // 2
-    root = Node(sorted_ids[mid])
-
-    root.left = construct_tree(sorted_ids[:mid])
-    root.right = construct_tree(sorted_ids[mid + 1:])
-
-    return root
-
-def generate_dot_representation(root, parent_name, dot):
-    current_name = f'"{root.value}"'
-    dot.node(current_name)
-
-    if parent_name is not None:
-        dot.edge(parent_name, current_name)
-
-    if root.left is not None:
-        generate_dot_representation(root.left, current_name, dot)
-
-    if root.right is not None:
-        generate_dot_representation(root.right, current_name, dot)
-
-# Example IDs
-ids = ["I4", "S6", "S5", "S8", "S9", "I1", "S1", "I7", "A1", "A3", "S4", "I2", "S7", "I3", "S3", "A4", "I9", "I11", "A2", "S10", "S2", "S11", "I5", "I8", "I6", "I10"]
-
-# Build the balanced binary tree
-root = build_balanced_binary_tree(ids)
-
-# Create a Digraph object
-dot = Digraph(comment='Binary Tree')
-generate_dot_representation(root, None, dot)
-
-# Print the DOT representation
-print(dot)
+if __name__ == '__main__':
+    graph = [[0, 2, 0, 1, 0],
+             [2, 0, 3, 0, 0],
+             [0, 3, 0, 4, 0],
+             [1, 0, 4, 0, 5],
+             [0, 0, 0, 5, 0]]
+    print(dijkstra(graph, 0))
