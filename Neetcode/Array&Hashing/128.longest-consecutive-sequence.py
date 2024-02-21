@@ -8,12 +8,13 @@
 # @lc code=start
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        s, res = set(nums), 0
-        for num in s:
-            if num - 1 in s:
+        numSet = set(nums)
+        res = 0
+        for n in nums:
+            if (n-1) in numSet:
                 continue
             adder = 1
-            while num + adder in s:
+            while n + adder in numSet:
                 adder += 1
             res = max(res, adder)
         return res
