@@ -9,19 +9,19 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         s = s.lower()
-        str = ""
-        for c in s:
-            if c.isalnum():
-                str += c
-        str = list(str)
         left = 0
-        right = len(str) - 1
+        right = len(s) - 1
         while left <= right:
-            if str[left] != str[right]:
+            while not s[left].isalnum() and left + 1 <= right:
+                left += 1
+            while not s[right].isalnum() and left <= right - 1:
+                right -= 1
+            if s[left] != s[right]:
                 return False
             left += 1
             right -= 1
         return True
 
+Solution().isPalindrome("A man, a plan, a canal: Panama")
 
 # @lc code=end
