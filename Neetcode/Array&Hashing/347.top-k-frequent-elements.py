@@ -7,6 +7,11 @@
 # @lc code=start
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        We record the frequency for each element in a dict.
+        We then extract the key with the highest value/frequency out
+        and make it 0 to remove it from the record.
+        """
         counter = {}
         for n in nums:
             if not counter.get(n):

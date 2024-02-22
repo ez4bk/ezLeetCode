@@ -7,6 +7,11 @@
 # @lc code=start
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        """
+        We encode each element. Same anagram should have the same
+        encoding. And we use a dict to record a mapping of:
+            (A type of encoding): (Elements having the same encoding)
+        """
         codeToList = {}
         for item in strs:
             code = self.encode(item)
@@ -19,6 +24,9 @@ class Solution:
         return res
     
     def encode(self, s):
+        """
+        Same idea as 242. But this time we return a stringfied list.
+        """
         count = [0] * 26
         for c in s:
             delta = ord(c) - ord('a')

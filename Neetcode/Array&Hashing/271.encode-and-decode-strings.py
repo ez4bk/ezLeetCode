@@ -5,8 +5,12 @@
 #
 
 class Solution:
-
     def encode(self, strs: List[str]) -> str:
+        """
+        Either str(len(s)) + "#" + s or s + "#" + str(len(s))
+        would work. But considering the ease of decoding, the prior
+        one is better.
+        """
         enStr = ""
 
         for s in strs:
@@ -16,6 +20,11 @@ class Solution:
         return enStr
         
     def decode(self, s: str) -> List[str]:
+        """
+        Anything before "#" must be an integer representing the length
+        of the next string element. Using this number we can extract the
+        actuall string element from the whole string.
+        """
         deStrs = []
         i = 0
         

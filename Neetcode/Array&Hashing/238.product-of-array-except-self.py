@@ -7,6 +7,13 @@
 # @lc code=start
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        """
+        Tricky one. Kinda like the idea of DP.
+        We track of the prefix product of an element i from the
+        beginning as well as the postfix product from the end.
+        And when their indices go across, prefix * postfix is
+        automatically done.
+        """
         n = len(nums)
         res = [1] * n
         pre = 1

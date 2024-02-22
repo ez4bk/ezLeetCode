@@ -8,6 +8,9 @@
 # @lc code=start
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
+        """
+        EZPZ
+        """
         a = {}
         for num in nums:
             if a.get(num):

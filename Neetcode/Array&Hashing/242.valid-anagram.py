@@ -23,6 +23,12 @@ class Solution(object):
         return True
     
     def encode(self, s):
+        """
+        !!! The main idea is here. Encode each string to
+        a list counting the occurrences for each letter.
+        
+        Each type of anagram should have the same result.
+        """
         count = [0] * 26
         for c in s:
             delta = ord(c) - ord('a')
