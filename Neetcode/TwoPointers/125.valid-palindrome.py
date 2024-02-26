@@ -8,6 +8,9 @@
 # @lc code=start
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        """
+        Traversing using two pointers from left most and right most towards intersection.
+        """
         s = s.lower()
         left = 0
         right = len(s) - 1

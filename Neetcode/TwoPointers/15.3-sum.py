@@ -9,8 +9,8 @@
 class Solution(object):
     def threeSum(self, nums):
         """
-        :type nums: List[int]
-        :rtype: List[List[int]]
+        Indexing from 1 to n-2, using two pointers for the subarray to
+        find the maximum sum possible.
         """
         n = len(nums)
         res = set()

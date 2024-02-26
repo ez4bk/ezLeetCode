@@ -8,6 +8,10 @@
 class Solution:
 
     def isValid(self, s: str) -> bool:
+        """
+        Push to the stack if left parentheses, pop and check if match
+        for right parentheses.
+        """
         partner = {
             '(': ')',
             '[': ']',

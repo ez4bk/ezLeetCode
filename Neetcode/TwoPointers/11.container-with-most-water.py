@@ -7,6 +7,11 @@
 # @lc code=start
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        """
+        Dynamically find the largest area from left most and right most
+        towards the middle. The basic logic is that you always want to find
+        a taller side.
+        """
         left = 0
         right = len(height) - 1
         res = 0
