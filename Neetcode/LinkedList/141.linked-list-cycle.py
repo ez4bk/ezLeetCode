@@ -11,28 +11,27 @@ class ListNode:
         self.val = x
         self.next = None
 
-
 class Solution:
     def hasCycle(self, head) -> bool:
-        # stack = {}
-        # while head:
-        #     if head.next in stack:
-        #         return True
-        #     else:
-        #         stack[head] = True
-        #         head = head.next
-
-        # return False
-        if not head:
-            return False
+        """
+        Originally using a set and find duplicate during traversal.
+        Now using a slow pointer traversing one by one and a fast pointer
+        traversing by two steps in each interation.
+        
+        If the fast pointer meet the slow pointer, then cycle exists.
+        Otherwise, the fast pointer would've reached the end in O(n/2) time.
+        """
         slow = head
-        fast = head.next
-        while slow != fast:
-            if not fast or not fast.next:
-                return False
+        fast = head
+        
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        return True
+            if slow == fast:
+                return True
+            
+        return False
+
 
 # if __name__ == '__main__':
 #     node0 = ListNode(3)
