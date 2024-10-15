@@ -43,7 +43,7 @@ class Solution:
             node = heapq.heappop(pq)[2]
             p.next = node
             if node.next:
-                heapq.heappush(pq, (node.next.val, id(node.next), node))
+                heapq.heappush(pq, (node.next.val, id(node.next), node.next))
             p = p.next
         
         return dummy.next
